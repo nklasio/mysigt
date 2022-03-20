@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\DeviceBackupContoller;
 use App\Http\Controllers\DeviceController;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard.home');
+    Route::get('/users', [UserController::class, 'index'])->name('dashboard.users');
+    Route::get('devices', [\App\Http\Controllers\Dashboard\DeviceController::class, 'index'])->name('dashboard.devices');
+});
 
 
 Route::middleware('auth')->group(function () {

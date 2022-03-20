@@ -31,7 +31,16 @@ class User extends Authenticatable implements MustVerifyEmail {
         'email_verified_at' => 'datetime',
     ];
 
+    public static function search($query) {
+        return empty($query) ? static::query()
+            : static::where('name', 'like', '%' . $query . '%');
+    }
+
     public function devices() {
         return $this->hasMany('App\Models\Device');
+    }
+
+    public function backups() {
+        return $this->hasMany('App\Models\DeviceBackup');
     }
 }
