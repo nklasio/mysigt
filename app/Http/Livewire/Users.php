@@ -24,7 +24,7 @@ class Users extends Component {
         $this->sortField = $field;
     }
 
-    // TODO: fix table not going to correct position when searching -> if only enough found for 1 page but currently on page 2, page does not get reset? Dunno what causes this atm
+    // TODO: fix table page not updated on search -> if only enough found for 1 page but currently on page 2, page does not get reset? Dunno what causes this atm
     public function render() {
         return view('livewire.users', [
             'users' => User::search($this->search)
