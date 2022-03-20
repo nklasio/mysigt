@@ -42,7 +42,8 @@ class BackupView extends Component {
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
 
-        //dump($backups);
         return view('livewire.backup-view', ['backups' => $backups]);
     }
+
+
 }
